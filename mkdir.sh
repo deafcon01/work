@@ -1,3 +1,12 @@
+zip=unzip
+if [ $zip -ne 0 ]; then
+    apt -y install unzip
+fi
+unzip 01-04-2019.zip;
+unzip 02-04-2019.zip;
+unzip 26-03-2019.zip;
+unzip 27-03-2019.zip;
+
 dir=data
 if [[ ! -e $dir ]]; then
     mkdir $dir;

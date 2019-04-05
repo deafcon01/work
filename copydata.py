@@ -1,7 +1,7 @@
 import os
 from shutil import copyfile
 import pdb
-train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019']
+train_list=['27-03-2019','26-03-2019','01-04-2019']
 test_list=['02-04-2019']
 def cpy(lists,f):
     path =os.getcwd()
