@@ -9,9 +9,9 @@ def cpy(lists,f):
         for files in os.listdir(folder):
             #pdb.set_trace()
             if files.find('.jpg') > 0:
-                copyfile(os.path.join(path,folder,files),os.path.join(path,'data',f,'img',files.replace(' ','_')))
+                copyfile(os.path.join(path,folder,files),os.path.join(path,'data',f,'img',files))#.replace(' ','_')))
             elif files.find('.json') > 0:
-                copyfile(os.path.join(path,folder,files),os.path.join(path,'data',f,'json',files.replace(' ','_')))
+                copyfile(os.path.join(path,folder,files),os.path.join(path,'data',f,'json',files))#.replace(' ','_')))
                 
 
 

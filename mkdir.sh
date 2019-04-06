@@ -22,11 +22,16 @@ if [[ ! -e $dir ]]; then
 elif [[ ! -d $dir ]]; then
     echo "$dir already exists but is not a directory" 1>&2
 fi
+
 python3 copydata.py
 python3 clahe.py
 python3 jsontoxml.py
 python3 xmlcsv1.py
-python3 underscore.py
+#for file in $dir/train/images/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+#for file in $dir/test/images/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+#for file in $dir/train/annotations/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+#for file in $dir/train/annotations/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+#python3 underscore.py
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")) print $0}' < data/train_labels.csv > data/bonelosstrain.csv
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")) print $0}' < data/test_labels.csv > data/bonelosstest.csv
 cp data/bonelosstrain.csv .

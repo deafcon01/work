@@ -19,17 +19,17 @@ import tensorflow as tf
 from PIL import Image
 from object_detection.utils import dataset_util
 from collections import namedtuple, OrderedDict
-
+import pdb
 flags = tf.app.flags
 flags.DEFINE_string('csv_input', '', 'Path to the CSV input')
 flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
-flags.DEFINE_string('set','','Train set or Test set')
+flags.DEFINE_string('set','train','Train set or Test set')
 FLAGS = flags.FLAGS
 
 
 # TO-DO replace this with label map
 def class_text_to_int(row_label):
-    if row_label == 'Tumour':
+    if row_label == 'boneloss':
         return 1
     else:
         None
@@ -84,9 +84,10 @@ def create_tf_example(group, path):
 
 def main(_):
     writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
-    path = os.path.join(os.getcwd(),FLAGS.set,'images')
+    path = os.path.join(os.getcwd(),'data',FLAGS.set,'images')
     examples = pd.read_csv(FLAGS.csv_input)
     grouped = split(examples, 'filename')
+    #pdb.set_trace()
     for group in grouped:
         tf_example = create_tf_example(group, path)
         writer.write(tf_example.SerializeToString())
