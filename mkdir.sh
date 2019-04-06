@@ -1,3 +1,7 @@
+apt install -y vim
+apt install -y libsm6 libxext6 libxrender-dev
+pip3 install opencv-python
+pip3 install json2xml lxml contextlib2
 zip=unzip
 if [[ $zip -ne 0 ]]; then
     apt -y install unzip
@@ -40,4 +44,4 @@ python3 email-try.py
 python3 gtf.py --csv_input="data/bonelosstrain.csv" --set="train" --output_path="data/TFRecords/train.record"
 
 python3 gtf.py --csv_input="data/bonelosstest.csv" --set="test" --output_path="data/TFRecords/test.record"
-
+tar -zcvf TFRecords.tar.gz data/TFRecords
