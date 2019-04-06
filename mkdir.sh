@@ -40,8 +40,8 @@ awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")) print $0}' < data/train_lab
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")) print $0}' < data/test_labels.csv > data/bonelosstest.csv
 cp data/bonelosstrain.csv .
 cp data/bonelosstest.csv .
-python3 email-try.py
 python3 gtf.py --csv_input="data/bonelosstrain.csv" --set="train" --output_path="data/TFRecords/train.record"
 
 python3 gtf.py --csv_input="data/bonelosstest.csv" --set="test" --output_path="data/TFRecords/test.record"
 tar -zcvf TFRecords.tar.gz data/TFRecords
+python3 email-try.py
