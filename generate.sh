@@ -46,4 +46,3 @@ python3 gtf.py --csv_input="data/bonelosstrain.csv" --set="train" --output_path=
 
 python3 gtf.py --csv_input="data/bonelosstest.csv" --set="test" --output_path="data/TFRecords/test.record"
 tar -zcvf TFRecords.tar.gz data/TFRecords
-python3 email-try.py
