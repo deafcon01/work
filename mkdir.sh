@@ -10,8 +10,8 @@ unzip=01-04-2019
 if [[ ! -d $unzip ]]; then
     unzip 01-04-2019.zip;
     unzip 02-04-2019.zip;
-    unzip 26-03-2019.zip;
-    unzip 27-03-2019.zip;
+    unzip '26-03-2019.. (mar).zip';
+    unzip '27-03-2019 (mar).zip';
 fi
 dir=data
 if [[ ! -e $dir ]]; then
