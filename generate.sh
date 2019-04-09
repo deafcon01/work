@@ -1,3 +1,4 @@
+#Comment these out when not running for first time
 apt install -y vim
 apt install -y libsm6 libxext6 libxrender-dev
 pip3 install opencv-python
@@ -31,11 +32,12 @@ python3 copydata.py
 python3 clahe.py
 python3 jsontoxml.py
 python3 xmlcsv1.py
-#for file in $dir/train/images/*; do mv "$file" `echo $file | tr '__' '_'` ; done
-#for file in $dir/test/images/*; do mv "$file" `echo $file | tr '__' '_'` ; done
-#for file in $dir/train/annotations/*; do mv "$file" `echo $file | tr '__' '_'` ; done
-#for file in $dir/train/annotations/*; do mv "$file" `echo $file | tr '__' '_'` ; done
-#python3 underscore.py
+
+for file in $dir/train/images/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+for file in $dir/test/images/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+for file in $dir/train/annotations/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+for file in $dir/train/annotations/*; do mv "$file" `echo $file | tr '__' '_'` ; done
+python3 underscore.py
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")) print $0}' < data/train_labels.csv > data/bonelosstrain.csv
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")) print $0}' < data/test_labels.csv > data/bonelosstest.csv
 cp data/bonelosstrain.csv .
