@@ -13,7 +13,9 @@ if [[ ! -d $unzip ]]; then
     unzip 02-04-2019.zip;
     unzip '26-03-2019.. (mar).zip';
     unzip '27-03-2019 (mar).zip';
+    unzip '9th april,2019.zip'
 fi
+rm '9th april,2019/k.suresh reddy 322900 20180615 12-04-09.JPG'
 dir=data
 if [[ ! -e $dir ]]; then
     mkdir $dir;

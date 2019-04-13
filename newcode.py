@@ -10,7 +10,7 @@ import re
 from json2xml import json2xml,readfromjson
 
 
-train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019']
+train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019','9th april,2019']
 test_list=['02-04-2019']
 
 def cpy(lists,f):
