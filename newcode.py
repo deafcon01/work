@@ -10,26 +10,25 @@ import re
 from json2xml import json2xml,readfromjson
 
 
-train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019','9th april,2019']
-test_list=['02-04-2019']
-
+#train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019','02-04-2019']
+#test_list=['9th april,2019']
+ 
 def cpy(lists,f):
     path =os.getcwd()
     for folder in lists:
         for files in os.listdir(folder):
-            #pdb.set_trace()
-            if files.find('.jpg') > 0:
+            ##
+            if files.endswith('.jpg') > 0:
                 copyfile(os.path.join(path,folder,files),os.path.join(path,'data',f,'img',re.sub(r"[^\S\n\t]+",'_',files)))#.replace(' ','_')))
-            elif files.find('.json') > 0:
+            elif files.endswith('.json') > 0:
                 copyfile(os.path.join(path,folder,files),os.path.join(path,'data',f,'json',re.sub(r"[^\S\n\t]+",'_',files)))#.replace(' ','_')))
-
 
 
 def clahe():
     cdir=os.getcwd()
     outdir='images/'
     for directory in ['data/train','data/test']:
-        #pdb.set_trace()
+        #
         if not os.path.exists(os.path.join(cdir,directory,outdir)):
             os.mkdir('{}/{}/{}'.format(cdir,directory,outdir))
         for files in os.listdir(os.path.join(cdir,directory,"img")):
@@ -48,7 +47,7 @@ def jsontoxml():
     for directory in ['data/train','data/test']:
         if not os.path.exists(os.path.join(cdir,directory,outdir)):
             os.mkdir('{}/{}/{}'.format(cdir,directory,outdir))
-            #pdb.set_trace()
+            ##
         for files in os.listdir(os.path.join(cdir,directory,'json')):
             if files.endswith('.json'):
                 data=readfromjson(os.path.join(cdir,directory,'json',files))
@@ -116,9 +115,9 @@ def underscore():
             f.writelines(lines)
 
 def main():
-    train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019']
-    test_list=['02-04-2019']
-    #pdb.set_trace()
+    train_list=['26-03-2019.. (mar)','01-04-2019','02-04-2019','9th april,2019']
+    test_list=['27-03-2019 (mar)']
+    ##
     cpy(train_list,'train')
     cpy(test_list,'test')
     clahe()
