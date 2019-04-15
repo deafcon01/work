@@ -48,6 +48,7 @@ python3 newcode.py
 
 awk -F '[\,]' '{ if($4=="bone_loss"){ $4="boneloss";print $0} else {print $0}}' < data/train_labels.csv > data/train_labels1.csv
 awk -F '[\,]' '{ if($4=="bone_loss"){ $4="boneloss";print $0} else {print $0}}' < data/test_labels.csv > data/test_labels1.csv
+python3 underscore.py
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")||($4=="missing_tooth")){print $0}else{$4="other"; print $1","$2","$3","$4","$5","$6","$7","$8 }}' < data/train_labels1.csv > data/bonelosstrain.csv
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")||($4=="missing_tooth")) print $0}' < data/test_labels1.csv > data/bonelosstest.csv
 cp data/bonelosstrain.csv .
