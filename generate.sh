@@ -13,7 +13,8 @@ if [[ ! -d $unzip ]]; then
     unzip 02-04-2019.zip;
     unzip '26-03-2019.. (mar).zip';
     unzip '27-03-2019 (mar).zip';
-    unzip '9th april,2019.zip'
+    unzip '9th april,2019.zip';
+    unzip 13-04-2019.zip;
 fi
 rm '9th april,2019/k.suresh reddy 322900 20180615 12-04-09.JPG'
 mv '9th april,2019/m srinivas 405920 20180629 15-35-22.jpg' '9th april,2019/m srinivas 405920 20180629 15-36-15.jpg'
@@ -47,7 +48,7 @@ python3 newcode.py
 
 awk -F '[\,]' '{ if($4=="bone_loss"){ $4="boneloss";print $0} else {print $0}}' < data/train_labels.csv > data/train_labels1.csv
 awk -F '[\,]' '{ if($4=="bone_loss"){ $4="boneloss";print $0} else {print $0}}' < data/test_labels.csv > data/test_labels1.csv
-awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")||($4=="missing_tooth")) print $0}' < data/train_labels1.csv > data/bonelosstrain.csv
+awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")||($4=="missing_tooth")){print $0}else{$4="other"; print $1","$2","$3","$4","$5","$6","$7","$8 }}' < data/train_labels1.csv > data/bonelosstrain.csv
 awk -F '[\,]' '{ if(($4=="class")||($4=="boneloss")||($4=="missing_tooth")) print $0}' < data/test_labels1.csv > data/bonelosstest.csv
 cp data/bonelosstrain.csv .
 cp data/bonelosstest.csv .
