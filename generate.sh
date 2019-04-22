@@ -15,6 +15,7 @@ if [[ ! -d $unzip ]]; then
     unzip '27-03-2019 (mar).zip';
     unzip '9th april,2019.zip';
     unzip 13-04-2019.zip;
+    unzip 16-04-2019.zip;
 fi
 rm '9th april,2019/k.suresh reddy 322900 20180615 12-04-09.JPG'
 mv '9th april,2019/m srinivas 405920 20180629 15-35-22.jpg' '9th april,2019/m srinivas 405920 20180629 15-36-15.jpg'
