@@ -54,7 +54,7 @@ flags.DEFINE_boolean('faces_only', True, 'If True, generates bounding boxes '
                      'in the latter case, the resulting files are much larger.')
 flags.DEFINE_string('mask_type', 'png', 'How to represent instance '
                     'segmentation masks. Options are "png" or "numerical".')
-flags.DEFINE_integer('num_shards', 10, 'Number of TFRecord shards')
+flags.DEFINE_integer('num_shards', 15, 'Number of TFRecord shards')
 
 FLAGS = flags.FLAGS
 
@@ -147,6 +147,7 @@ def dict_to_tf_example(data,
   poses = []
   difficult_obj = []
   masks = []
+  image_format = b'jpg'
   if 'annotations' in data:#object->annotations
     for obj in data['annotations']:
       #difficult = bool(int(obj['difficult']))
@@ -181,12 +182,12 @@ def dict_to_tf_example(data,
       #'image/height': dataset_util.int64_feature(height),
       #'image/width': dataset_util.int64_feature(width),
       'image/filename': dataset_util.bytes_feature(
-          data['meta']['imageid'].encode('utf8')),
+          data['meta']['imageid'].encode('utf-8')),
       'image/source_id': dataset_util.bytes_feature(
-          data['meta']['imageid'].encode('utf8')),
+          data['meta']['imageid'].encode('utf-8')),
       #'image/key/sha256': dataset_util.bytes_feature(key.encode('utf8')),
       'image/encoded': dataset_util.bytes_feature(encoded_jpg),
-      'image/format': dataset_util.bytes_feature('jpeg'.encode('utf8')),
+      'image/format': dataset_util.bytes_feature(image_format),
       'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
       'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
       'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),

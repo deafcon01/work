@@ -146,7 +146,7 @@ def generate_txt_files(path_to_toy_data):
     """
 
 def main():
-    train_list=['13-04-2019','01-04-2019','02-04-2019','9th april,2019','27-03-2019 (mar)','16-04-2019','18th april','22nd april','26-03-2019.. (mar)']
+    train_list=['13-04-2019','01-04-2019','02-04-2019','9th april,2019','27-03-2019 (mar)','16-04-2019','18th april','22nd april','26-03-2019.. (mar)']#random split working
     test_list=['26-03-2019.. (mar)']
     ##
     cpy(train_list,'train')
