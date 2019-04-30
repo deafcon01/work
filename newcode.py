@@ -115,8 +115,8 @@ def underscore():
             f.writelines(lines)
 
 def main():
-    train_list=['26-03-2019.. (mar)','01-04-2019','02-04-2019','9th april,2019','27-03-2019 (mar)']
-    test_list=['13-04-2019']
+    train_list=['01-04-2019','02-04-2019','9th april,2019','27-03-2019 (mar)','13-04-2019']
+    test_list=['26-03-2019.. (mar)']
     ##
     cpy(train_list,'train')
     cpy(test_list,'test')

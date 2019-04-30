@@ -71,12 +71,12 @@ def get_class_name_from_filename(file_name):
   """
   #match = re.match(r'([A-Za-z0-9_\w]+\.jpg)', file_name, re.I)
   #return match.groups()[0]
-  if file_name == "boneloss":
+  if file_name == "boneloss" or "bone loss":
       return "boneloss"
   elif file_name == "missing_tooth":
       return "missing_tooth"
-  else:
-      return "other"
+  #else:
+  #    return "other"
 
 
 def dict_to_tf_example(data,
