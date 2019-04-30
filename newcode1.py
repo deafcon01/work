@@ -10,8 +10,6 @@ import re
 from json2xml import json2xml,readfromjson
 import numpy as np
 
-#train_list=['27-03-2019 (mar)','26-03-2019.. (mar)','01-04-2019','02-04-2019']
-#test_list=['9th april,2019']
  
 def cpy(lists,f):
     path =os.getcwd()
@@ -90,16 +88,28 @@ def xml_to_csv(path):
                 #fname = root.find('meta/imageid').text
                 #print(fname)
                 #fname.replace(' ','_')
-                value = (root.find('meta/imageid').text,
-                        int(w),
-                        int(h),
-                        member[1].text,
-                        float(member[3].text)-delta,
-                        float(member[5].text)-delta,
-                        float(member[4].text)+delta,
-                        float(member[0].text)+delta
-                        )
-                xml_list.append(value)
+                if member[1].text == "boneloss" or member[1].text == "bone loss":
+                    value = (root.find('meta/imageid').text,
+                            int(w),
+                            int(h),
+                            "boneloss",
+                            float(member[3].text)-delta,
+                            float(member[5].text)-delta,
+                            float(member[4].text)+delta,
+                            float(member[0].text)+delta
+                            )
+                    xml_list.append(value)
+                elif member[1].text == "missing_tooth":
+                    value = (root.find('meta/imageid').text,
+                            int(w),
+                            int(h),
+                            member[1].text,
+                            float(member[3].text)-delta,
+                            float(member[5].text)-delta,
+                            float(member[4].text)+delta,
+                            float(member[0].text)+delta
+                            )
+                    xml_list.append(value)
     column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
     xml_df = pd.DataFrame(xml_list, columns=column_name)
     return xml_df
@@ -147,8 +157,7 @@ def generate_txt_files(path_to_toy_data):
 
 def main():
     train_list=['13-04-2019','01-04-2019','02-04-2019','9th april,2019','27-03-2019 (mar)','16-04-2019','18th april','22nd april','26-03-2019.. (mar)']#random split working
-    test_list=['26-03-2019.. (mar)']
-    ##
+    ##test_list=['26-03-2019.. (mar)']
     cpy(train_list,'train')
     #cpy(test_list,'test')
     clahe()
